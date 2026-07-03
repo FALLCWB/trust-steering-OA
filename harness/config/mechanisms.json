@@ -1,0 +1,23 @@
+{
+  "vip": "10.0.0.100",
+  "vip_mac": "0a:00:00:00:00:64",
+  "tiers": {
+    "SvH": "10.0.0.201",
+    "SvC": "10.0.0.202",
+    "SvL": "10.0.0.203"
+  },
+  "server_macs": {
+    "10.0.0.201": "00:00:00:00:02:01",
+    "10.0.0.202": "00:00:00:00:02:02",
+    "10.0.0.203": "00:00:00:00:02:03"
+  },
+  "tau_c": 0.4,
+  "tau_l": 0.7,
+  "default_tier": "SvC",
+  "flow_idle_timeout": 30,
+  "monitor_interval": 1.0,
+  "event_log": "/opt/trust-lab/runs/controller_events.jsonl",
+  "drop_tiers": [],
+  "subnet_scoring": true,
+  "promote_stab_s": 5.0
+}
