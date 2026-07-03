@@ -29,3 +29,7 @@ python3 harness/run_experiment.py --out out/ --attack slowloris --intensity 2000
 ```
 
 The `*.sh` drivers in `harness/` run the full experiment batches used in the paper (baselines, ablations, threshold sweep, live-detector runs, binary comparison, subnet-collateral, overhead). Figures are regenerated from the per-run output with the scripts in `figures/`.
+
+## Raw measurement data
+
+`data/raw-measurements.tar.gz` contains the per-repetition measurements behind every reported figure and statistic: per-client HTTP latency logs (`latency_*.csv`), run manifests (`manifest.json`, phase timestamps), per-tier time series, the live-sensor score log (`sensor_live.log`), and the detector metric summaries. Extract with `tar xzf data/raw-measurements.tar.gz`; each experiment directory matches a `harness/` driver. Packet captures, the flow-feature dataset, and trained detector models are excluded for size and are available from the authors on request.
