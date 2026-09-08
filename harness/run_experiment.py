@@ -155,6 +155,13 @@ def legit_loop(pid, vip, ip, outdir, stop):
     f.close()
 
 
+def start_bgload(pid, conc, vip):
+    """Benign background HTTP load: a sustained Apache Bench client of `conc` connections."""
+    return in_ns(pid, ["ab", "-t", "3600", "-n", "100000000", "-c", str(conc),
+                       "http://%s/" % vip],
+                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
 def start_attack(pid, atype, intensity, vip):
     if atype == "synflood":
         # intensity = pps approx via interval; --flood ignores rate, so use -i for control
@@ -210,6 +217,13 @@ def main():
     ap.add_argument("--rep", type=int, default=0)
     ap.add_argument("--nclients", type=int, default=0,
                     help="total clients in topo (for server port mapping); 0=auto")
+    ap.add_argument("--bg-hosts", default="",
+                    help="csv of hosts generating benign background HTTP load")
+    ap.add_argument("--bg-conc", type=int, default=0,
+                    help="total benign background concurrency, split across --bg-hosts")
+    ap.add_argument("--score-attackers", default="yes", choices=["yes", "no"],
+                    help="no = leave attackers unscored (they arrive at the default tier)")
+    ap.add_argument("--tag", default="")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
 
@@ -220,8 +234,9 @@ def main():
 
     legit = [h for h in args.legit.split(",") if h]
     attackers = [h for h in args.attackers.split(",") if h]
-    pids = {h: ns_pid(h) for h in legit + attackers}
-    ips = {h: "10.0.0.%d" % (11 + int(h[1:]) - 1) for h in legit + attackers}
+    bghosts = [h for h in args.bg_hosts.split(",") if h]
+    pids = {h: ns_pid(h) for h in legit + attackers + bghosts}
+    ips = {h: "10.0.0.%d" % (11 + int(h[1:]) - 1) for h in legit + attackers + bghosts}
     missing = [h for h, p in pids.items() if p is None]
     if missing:
         raise SystemExit("hosts not found: %s" % missing)
@@ -244,20 +259,29 @@ def main():
         th.start(); threads.append(th)
 
     # warm-up ARP so the first requests are not lost
-    for h in legit + attackers:
+    for h in legit + attackers + bghosts:
         in_ns(pids[h], ["ping", "-c1", "-W2", args.vip],
               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).wait()
 
     # known-good clients settle on SvH during baseline (scored before the attack)
     if args.score_mode == "oracle":
-        for h in legit:
+        for h in legit + bghosts:
             rest_post_score(args.rest, ips[h], args.legit_score)
+    # benign background load starts before the baseline window so the offered load is
+    # already steady when the attack begins
+    bgprocs = []
+    if bghosts and args.bg_conc > 0:
+        per = max(1, args.bg_conc // len(bghosts))
+        for h in bghosts:
+            bgprocs.append(start_bgload(pids[h], per, args.vip))
+        manifest["bg_per_host_conc"] = per
+        time.sleep(2)
     print("[run] baseline %ss" % args.baseline); manifest["phases"]["baseline_start"] = now() - t0
     time.sleep(args.baseline)
 
     # attack phase: attackers get flagged now (measures mitigation from here)
     manifest["phases"]["attack_start"] = now() - t0
-    if args.score_mode == "oracle":
+    if args.score_mode == "oracle" and args.score_attackers == "yes":
         for h in attackers:
             rest_post_score(args.rest, ips[h], args.mal_score)
     print("[run] attack %s intensity=%d for %ss" % (args.attack, args.intensity, args.attack_dur))
@@ -272,6 +296,11 @@ def main():
             p.wait(timeout=3)
         except Exception:
             p.kill()
+    for p_ in bgprocs:
+        try:
+            p_.kill()
+        except Exception:
+            pass
     for tool in ("hping3", "slowhttptest", "ab"):
         subprocess.run(["pkill", "-9", tool], stderr=subprocess.DEVNULL)
     print("[run] cooldown %ss" % args.cooldown)

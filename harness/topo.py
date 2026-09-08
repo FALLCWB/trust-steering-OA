@@ -34,9 +34,13 @@ TIERS = {"SvH": ("10.0.0.201", "00:00:00:00:02:01", 100, 256, int(os.getenv("SVH
          "SvC": ("10.0.0.202", "00:00:00:00:02:02", 50, 128, int(os.getenv("SVC_WORKERS","12"))),
          "SvL": ("10.0.0.203", "00:00:00:00:02:03", 10, 32, 4)}
 SENSOR = ("10.0.0.50", "00:00:00:00:00:50")
+# Third-party reflector hosts for the amplification/reflection experiment. They are
+# ordinary hosts running a UDP responder that answers with a much larger payload; an
+# attacker that spoofs the victim address turns them into unwitting amplifiers.
+REFLECTOR_BASE = 61   # 10.0.0.61 ...
 
 
-def build(n_clients, c_ip, c_port, link_bw):
+def build(n_clients, c_ip, c_port, link_bw, client_delay_ms=0, n_reflectors=0):
     net = Mininet(controller=None, switch=OVSSwitch, link=TCLink, autoSetMacs=False)
     c0 = net.addController("c0", controller=RemoteController, ip=c_ip, port=c_port)
     s1 = net.addSwitch("s1", protocols="OpenFlow13")
@@ -47,7 +51,10 @@ def build(n_clients, c_ip, c_port, link_bw):
         mac = "00:00:00:00:01:%02x" % (11 + i)
         h = net.addHost("c%d" % (i + 1), ip=ip + "/24", mac=mac)
         clients.append(h)
-        net.addLink(h, s1, bw=link_bw)
+        if client_delay_ms:
+            net.addLink(h, s1, bw=link_bw, delay="%dms" % client_delay_ms)
+        else:
+            net.addLink(h, s1, bw=link_bw)
 
     servers = {}
     for tier, (ip, mac, bw, backlog, workers) in TIERS.items():
@@ -58,10 +65,18 @@ def build(n_clients, c_ip, c_port, link_bw):
     sensor = net.addHost("sensor", ip=SENSOR[0] + "/24", mac=SENSOR[1])
     net.addLink(sensor, s1, bw=link_bw)
 
+    reflectors = []
+    for i in range(n_reflectors):
+        ip = "10.0.0.%d" % (REFLECTOR_BASE + i)
+        mac = "00:00:00:00:03:%02x" % (REFLECTOR_BASE + i)
+        h = net.addHost("rf%d" % (i + 1), ip=ip + "/24", mac=mac)
+        reflectors.append(h)
+        net.addLink(h, s1, bw=link_bw)
+
     net.build()
     c0.start()
     s1.start([c0])
-    return net, s1, clients, servers, sensor
+    return net, s1, clients, servers, sensor, reflectors
 
 
 def setup_mirror(s1, sensor):
@@ -80,11 +95,18 @@ def main():
     ap.add_argument("--controller-port", type=int, default=6653)
     ap.add_argument("--link-bw", type=int, default=100)  # Mbit/s
     ap.add_argument("--no-cli", action="store_true")
+    ap.add_argument("--client-delay-ms", type=int,
+                    default=int(os.environ.get("CLIENT_DELAY_MS", "0")),
+                    help="one-way delay on every client link (netem); RTT is twice this")
+    ap.add_argument("--reflectors", type=int,
+                    default=int(os.environ.get("N_REFLECTORS", "0")),
+                    help="number of third-party UDP reflector hosts")
     args = ap.parse_args()
     setLogLevel("info")
 
-    net, s1, clients, servers, sensor = build(args.clients, args.controller_ip,
-                                              args.controller_port, args.link_bw)
+    net, s1, clients, servers, sensor, reflectors = build(
+        args.clients, args.controller_ip, args.controller_port, args.link_bw,
+        client_delay_ms=args.client_delay_ms, n_reflectors=args.reflectors)
     # Per-tier capacity: small SYN backlog + syncookies OFF make the low tier saturate
     # first under a SYN flood (the real bottleneck). These sysctls are per-netns.
     for tier, h in servers.items():
@@ -105,10 +127,18 @@ def main():
               "--page-bytes 65536 --delay-ms %d > /tmp/http_%s.log 2>&1 &"
               % (here, h.IP(), workers, tier, delay, tier))
 
+    # Third-party reflectors: a UDP responder whose reply is much larger than the query.
+    ampl = int(os.environ.get("AMPL_RESP_BYTES", "4096"))
+    for h in reflectors:
+        h.cmd("python3 %s/udp_reflector.py --bind %s --port 5353 --resp-bytes %d "
+              "> /tmp/reflector_%s.log 2>&1 &" % (here, h.IP(), ampl, h.name))
+
     # Write the authoritative tier -> switch-port mapping for the runner's collectors.
     import json as _json
     portmap = {tier: h.connectionsTo(s1)[0][1].name for tier, h in servers.items()}
     portmap["sensor"] = sensor.connectionsTo(s1)[0][1].name
+    for h in reflectors:
+        portmap[h.name] = h.connectionsTo(s1)[0][1].name
     os.makedirs("/opt/trust-lab/runs", exist_ok=True)
     _json.dump(portmap, open("/opt/trust-lab/runs/portmap.json", "w"))
     info("*** portmap: %s\n" % portmap)
@@ -119,12 +149,14 @@ def main():
     time.sleep(1)
     for tier, h in servers.items():
         h.cmd("arping -c 2 -A -I %s-eth0 %s >/dev/null 2>&1 &" % (h.name, h.IP()))
+    for h in reflectors:
+        h.cmd("arping -c 1 -I %s-eth0 10.0.0.100 >/dev/null 2>&1 &" % h.name)
     # Clients pre-resolve the VIP (controller answers).
     for h in clients:
         h.cmd("arping -c 1 -I %s-eth0 10.0.0.100 >/dev/null 2>&1 &" % h.name)
     time.sleep(2)
-    info("*** Topology up: %d clients, tiers SvH/SvC/SvL, sensor mirror active.\n"
-         % len(clients))
+    info("*** Topology up: %d clients, %d reflectors, tiers SvH/SvC/SvL, sensor mirror active.\n"
+         % (len(clients), len(reflectors)))
     info("*** VIP=10.0.0.100  servers=%s\n" % {k: v[0] for k, v in TIERS.items()})
 
     if not args.no_cli:

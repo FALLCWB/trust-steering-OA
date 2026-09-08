@@ -48,6 +48,10 @@ DEFAULT_CONFIG = {
     "flow_idle_timeout": 30,
     "monitor_interval": 1.0,
     "event_log": "/opt/trust-lab/runs/controller_events.jsonl",
+    # Pin the configured tier-server IP->MAC bindings against ARP announcements.
+    "static_server_macs": True,
+    # Age after which a score loses its trust but keeps its suspicion (0 = never).
+    "score_ttl_s": 0,
 }
 
 
@@ -79,6 +83,11 @@ class TrustSteering(app_manager.RyuApp):
         self.mac_to_port = {}     # (dpid, mac) -> port
         self.ip_to_mac = {}       # learned host ip -> mac
         self.ip_to_mac.update(self.cfg.get("server_macs", {}))  # static server MACs
+        # Addresses whose IP->MAC binding is authoritative and must not be relearned.
+        self.pinned_ips = (set(self.cfg.get("server_macs", {}))
+                           if self.cfg.get("static_server_macs", True) else set())
+        self.arp_bind_rejected = 0   # ARP announcements refused for a pinned address
+        self.stale_score_events = 0  # scores that aged past score_ttl_s
         self.datapath = None
         # instrumentation
         self.packet_in_count = 0
@@ -104,9 +113,22 @@ class TrustSteering(app_manager.RyuApp):
             return "SvL"
         return "SvC"
 
+    def _stale(self, src_ip):
+        ttl = self.cfg.get("score_ttl_s", 0) or 0
+        if ttl <= 0:
+            return False
+        ts = self.score_event_ts.get(src_ip)
+        return ts is not None and (now() - ts) > ttl
+
     def tier_for_ip(self, src_ip):
         if src_ip in self.scores:
-            return self.tier_for_score(self.scores[src_ip])
+            t = self.tier_for_score(self.scores[src_ip])
+            if self._stale(src_ip):
+                # A stale score loses its trust but keeps its suspicion: fall back to the
+                # more severe of the stale verdict and the default quarantine tier.
+                d = self.cfg["default_tier"]
+                t = t if self.SEV.get(t, 0) >= self.SEV.get(d, 0) else d
+            return t
         # host-score mechanism: a new/unknown host inherits its /24 subnet reputation
         if self.cfg.get("subnet_scoring"):
             subnet = src_ip.rsplit(".", 1)[0]
@@ -178,7 +200,15 @@ class TrustSteering(app_manager.RyuApp):
     def _handle_arp(self, dp, in_port, eth, arp_pkt):
         if arp_pkt is None:
             return
-        self.ip_to_mac[arp_pkt.src_ip] = arp_pkt.src_mac
+        if arp_pkt.src_ip in self.pinned_ips and \
+                self.ip_to_mac.get(arp_pkt.src_ip) != arp_pkt.src_mac:
+            # An address whose binding is configured cannot be relearned from the wire.
+            self.arp_bind_rejected += 1
+            self.log_event("arp_binding_rejected", src_ip=arp_pkt.src_ip,
+                           claimed_mac=arp_pkt.src_mac,
+                           pinned_mac=self.ip_to_mac.get(arp_pkt.src_ip))
+        else:
+            self.ip_to_mac[arp_pkt.src_ip] = arp_pkt.src_mac
         # answer ARP for the VIP with the virtual MAC
         if arp_pkt.opcode == arp.ARP_REQUEST and arp_pkt.dst_ip == self.vip:
             self._send_arp_reply(dp, in_port, self.vip, self.vip_mac,
@@ -281,6 +311,14 @@ class TrustSteering(app_manager.RyuApp):
     def _monitor(self):
         while True:
             hub.sleep(self.cfg["monitor_interval"])
+            if (self.cfg.get("score_ttl_s", 0) or 0) > 0:
+                for ip in list(self.scores):
+                    if self._stale(ip) and self.tier_for_ip(ip) != self.assigned.get(ip):
+                        if ip not in self.dirty:
+                            self.stale_score_events += 1
+                            self.log_event("score_stale", src=ip,
+                                           age=now() - self.score_event_ts.get(ip, now()))
+                        self.dirty.add(ip)
             if not self.dirty or self.datapath is None:
                 continue
             dp = self.datapath
@@ -333,6 +371,8 @@ class TrustSteering(app_manager.RyuApp):
         self.score_event_ts.clear(); self.subnet_scores.clear()
         self.promote_pending.clear()
         self.packet_in_count = 0; self.flow_mod_count = 0
+        self.arp_bind_rejected = 0; self.stale_score_events = 0
+        self.ip_to_mac.update(self.cfg.get("server_macs", {}))
         dp = self.datapath
         if dp is not None:
             ofp, psr = dp.ofproto, dp.ofproto_parser
@@ -385,4 +425,7 @@ class TrustRestController(ControllerBase):
             "flow_mod_count": a.flow_mod_count,
             "assigned": a.assigned,
             "scores": a.scores,
+            "arp_bind_rejected": a.arp_bind_rejected,
+            "stale_score_events": a.stale_score_events,
+            "ip_to_mac": a.ip_to_mac,
         }).encode("utf-8"))

@@ -34,6 +34,7 @@ case "${1:-}" in
     systemctl reset-failed trust-topo 2>/dev/null
     systemd-run --unit=trust-topo --working-directory="$HARNESS" \
       --setenv=TARPIT_DELAY_MS="${TARPIT_DELAY_MS:-0}" --setenv=SVH_WORKERS="${SVH_WORKERS:-32}" --setenv=SVC_WORKERS="${SVC_WORKERS:-12}" \
+      --setenv=CLIENT_DELAY_MS="${CLIENT_DELAY_MS:-0}" --setenv=N_REFLECTORS="${N_REFLECTORS:-0}" --setenv=AMPL_RESP_BYTES="${AMPL_RESP_BYTES:-4096}" \
       /usr/bin/python3 topo.py --clients "${2:-3}" --controller-ip 127.0.0.1 \
       --controller-port 6653 --no-cli
     ;;
