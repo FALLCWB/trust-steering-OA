@@ -130,20 +130,25 @@ def control_delta(cell, field):
 
 
 def tmit(cell, sources):
-    """Mean reaction-and-install time for the given source addresses, from the event log."""
+    """Reaction-and-install time (Eq. tmit): the interval from score posting to the FIRST
+    installation of the diverting rule for the source, i.e. t^i - t^s. Under a high-rate
+    flood the switch keeps sending a Packet-In per leaked packet before the rule takes full
+    effect, so each source is logged many times with a growing tmit_since_score; the first
+    such value is the install time, and averaging all of them would report the flood's
+    Packet-In drain rather than the install. The first install per source is used."""
     p = os.path.join(cell, "events.jsonl")
     if not os.path.exists(p):
         return float("nan")
-    v = []
+    first = {}
     for line in open(p):
         try:
             e = json.loads(line)
         except ValueError:
             continue
-        if e.get("src") in sources and e.get("kind") in ("steer", "drop", "resteer_trigger"):
-            if e.get("tmit_since_score") is not None:
-                v.append(e["tmit_since_score"])
-    return float(np.mean(v)) if v else float("nan")
+        if (e.get("src") in sources and e.get("kind") in ("steer", "drop")
+                and e.get("tmit_since_score") is not None and e["src"] not in first):
+            first[e["src"]] = e["tmit_since_score"]
+    return float(np.mean(list(first.values()))) if first else float("nan")
 
 
 # -------------------------------------------------------------- aggregate --
