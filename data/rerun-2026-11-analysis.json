@@ -1,0 +1,1987 @@
+{
+ "live_slowloris": {
+  "label": "live detector, slowloris",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 41.2,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 17,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 58.3,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 24,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 47.4,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 19,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 64.3,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 28,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 44.4,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 18,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 37.5,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 16,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 41.2,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 17,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 47.4,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 19,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 41.2,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 17,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 44.4,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 18,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 46.7,
+  "attack_ci95": [
+   42.3,
+   52.0
+  ],
+  "steady_mean": 33.3,
+  "steady_ci95": [
+   33.3,
+   33.3
+  ],
+  "collapse_steady": "10/10",
+  "collapse_steady_cp95": [
+   0.69,
+   1.0
+  ],
+  "baseline_not_clean": [],
+  "sensor": {
+   "windows": 50,
+   "runs": 10,
+   "per_run_windows": [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5
+   ],
+   "attacker_mean": 0.368,
+   "attacker_sd": 0.145,
+   "attacker_min": 0.26,
+   "attacker_max": 0.85,
+   "below_tau_c": 39,
+   "p_leak": 0.78,
+   "crossings_within_runs": 21,
+   "legit_mean": 0.316,
+   "legit_windows": 65
+  }
+ },
+ "live_slowpost": {
+  "label": "live detector, slowpost",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 61.5,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 26,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 54.5,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 22,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 58.3,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 24,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 37.5,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 16,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 58.3,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 24,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 61.5,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 26,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 54.5,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 22,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 58.3,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 24,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 37.5,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 16,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 41.2,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 17,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 52.3,
+  "attack_ci95": [
+   46.2,
+   57.8
+  ],
+  "steady_mean": 33.3,
+  "steady_ci95": [
+   33.3,
+   33.3
+  ],
+  "collapse_steady": "10/10",
+  "collapse_steady_cp95": [
+   0.69,
+   1.0
+  ],
+  "baseline_not_clean": []
+ },
+ "live_slowread": {
+  "label": "live detector, slowread",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 98.6,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 147,
+    "n_steady": 88,
+    "steady_served_before_stop": 88
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 50.0,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 20,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 98.7,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 158,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 98.7,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 151,
+    "n_steady": 89,
+    "steady_served_before_stop": 89
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 98.7,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 156,
+    "n_steady": 94,
+    "steady_served_before_stop": 94
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 98.7,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 153,
+    "n_steady": 91,
+    "steady_served_before_stop": 91
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 80.5,
+    "steady": 93.1,
+    "n_baseline": 64,
+    "n_attack": 41,
+    "n_steady": 29,
+    "steady_served_before_stop": 25
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 61.5,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 26,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 37.5,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 16,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 58.3,
+    "steady": 33.3,
+    "n_baseline": 64,
+    "n_attack": 24,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 78.1,
+  "attack_ci95": [
+   63.7,
+   92.0
+  ],
+  "steady_mean": 72.6,
+  "steady_ci95": [
+   52.6,
+   92.6
+  ],
+  "collapse_steady": "4/10",
+  "collapse_steady_cp95": [
+   0.12,
+   0.74
+  ],
+  "baseline_not_clean": []
+ },
+ "live_synflood": {
+  "label": "live detector, synflood",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 184,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 187,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 187,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 187,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 174,
+    "n_steady": 94,
+    "steady_served_before_stop": 94
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 187,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 187,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 190,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 183,
+    "n_steady": 94,
+    "steady_served_before_stop": 93
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 190,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 100.0,
+  "attack_ci95": [
+   100.0,
+   100.0
+  ],
+  "steady_mean": 100.0,
+  "steady_ci95": [
+   100.0,
+   100.0
+  ],
+  "collapse_steady": "0/10",
+  "collapse_steady_cp95": [
+   0.0,
+   0.31
+  ],
+  "baseline_not_clean": []
+ },
+ "live_httpflood": {
+  "label": "live detector, httpflood",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 185,
+    "n_steady": 92,
+    "steady_served_before_stop": 92
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 166,
+    "n_steady": 86,
+    "steady_served_before_stop": 86
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 173,
+    "n_steady": 79,
+    "steady_served_before_stop": 79
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 174,
+    "n_steady": 92,
+    "steady_served_before_stop": 92
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 190,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 182,
+    "n_steady": 95,
+    "steady_served_before_stop": 95
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 158,
+    "n_steady": 94,
+    "steady_served_before_stop": 94
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 176,
+    "n_steady": 89,
+    "steady_served_before_stop": 89
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 169,
+    "n_steady": 86,
+    "steady_served_before_stop": 86
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 158,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 100.0,
+  "attack_ci95": [
+   100.0,
+   100.0
+  ],
+  "steady_mean": 100.0,
+  "steady_ci95": [
+   100.0,
+   100.0
+  ],
+  "collapse_steady": "0/10",
+  "collapse_steady_cp95": [
+   0.0,
+   0.31
+  ],
+  "baseline_not_clean": []
+ },
+ "live_hyst": {
+  "label": "live detector + hysteresis, slowloris",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 98.7,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 158,
+    "n_steady": 94,
+    "steady_served_before_stop": 94
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 95.6,
+    "steady": 98.8,
+    "n_baseline": 64,
+    "n_attack": 113,
+    "n_steady": 82,
+    "steady_served_before_stop": 81
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 93.6,
+    "steady": 96.8,
+    "n_baseline": 64,
+    "n_attack": 94,
+    "n_steady": 62,
+    "steady_served_before_stop": 60
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 95.5,
+    "steady": 96.2,
+    "n_baseline": 64,
+    "n_attack": 110,
+    "n_steady": 52,
+    "steady_served_before_stop": 50
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 96.8,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 126,
+    "n_steady": 96,
+    "steady_served_before_stop": 96
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 91.7,
+    "steady": 94.2,
+    "n_baseline": 64,
+    "n_attack": 84,
+    "n_steady": 52,
+    "steady_served_before_stop": 49
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 96.8,
+    "steady": 100.0,
+    "n_baseline": 64,
+    "n_attack": 126,
+    "n_steady": 94,
+    "steady_served_before_stop": 94
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 87.5,
+    "steady": 91.2,
+    "n_baseline": 64,
+    "n_attack": 64,
+    "n_steady": 34,
+    "steady_served_before_stop": 31
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 85.7,
+    "steady": 83.9,
+    "n_baseline": 64,
+    "n_attack": 63,
+    "n_steady": 31,
+    "steady_served_before_stop": 26
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 91.4,
+    "steady": 98.7,
+    "n_baseline": 64,
+    "n_attack": 81,
+    "n_steady": 75,
+    "steady_served_before_stop": 74
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 93.3,
+  "attack_ci95": [
+   90.7,
+   95.7
+  ],
+  "steady_mean": 96.0,
+  "steady_ci95": [
+   92.6,
+   98.6
+  ],
+  "collapse_steady": "0/10",
+  "collapse_steady_cp95": [
+   0.0,
+   0.31
+  ],
+  "baseline_not_clean": [],
+  "sensor": {
+   "windows": 41,
+   "runs": 10,
+   "per_run_windows": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5
+   ],
+   "attacker_mean": 0.35,
+   "attacker_sd": 0.125,
+   "attacker_min": 0.18,
+   "attacker_max": 0.81,
+   "below_tau_c": 29,
+   "p_leak": 0.707,
+   "crossings_within_runs": 13,
+   "legit_mean": 0.347,
+   "legit_windows": 58
+  }
+ },
+ "abl_defprimary": {
+  "label": "default-tier ablation, defprimary",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 9.1,
+    "steady": 0.0,
+    "n_baseline": 52,
+    "n_attack": 11,
+    "n_steady": 4,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 9.1,
+    "steady": 0.0,
+    "n_baseline": 52,
+    "n_attack": 11,
+    "n_steady": 4,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 0.0,
+    "steady": 0.0,
+    "n_baseline": 52,
+    "n_attack": 10,
+    "n_steady": 4,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 158,
+    "n_steady": 64,
+    "steady_served_before_stop": 64
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 0.0,
+    "steady": 0.0,
+    "n_baseline": 52,
+    "n_attack": 10,
+    "n_steady": 4,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 0.0,
+    "steady": 0.0,
+    "n_baseline": 52,
+    "n_attack": 10,
+    "n_steady": 4,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 158,
+    "n_steady": 64,
+    "steady_served_before_stop": 64
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 16.7,
+    "steady": 0.0,
+    "n_baseline": 52,
+    "n_attack": 12,
+    "n_steady": 4,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 159,
+    "n_steady": 63,
+    "steady_served_before_stop": 62
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 9.1,
+    "steady": 0.0,
+    "n_baseline": 52,
+    "n_attack": 11,
+    "n_steady": 4,
+    "steady_served_before_stop": 0
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 34.4,
+  "attack_ci95": [
+   8.8,
+   62.7
+  ],
+  "steady_mean": 30.0,
+  "steady_ci95": [
+   0.0,
+   60.0
+  ],
+  "collapse_steady": "7/10",
+  "collapse_steady_cp95": [
+   0.35,
+   0.93
+  ],
+  "baseline_not_clean": []
+ },
+ "abl_defquarantine": {
+  "label": "default-tier ablation, defquarantine",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 158,
+    "n_steady": 64,
+    "steady_served_before_stop": 64
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 158,
+    "n_steady": 63,
+    "steady_served_before_stop": 63
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 158,
+    "n_steady": 63,
+    "steady_served_before_stop": 63
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 160,
+    "n_steady": 64,
+    "steady_served_before_stop": 64
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 158,
+    "n_steady": 64,
+    "steady_served_before_stop": 64
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 158,
+    "n_steady": 62,
+    "steady_served_before_stop": 62
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 158,
+    "n_steady": 63,
+    "steady_served_before_stop": 63
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 158,
+    "n_steady": 63,
+    "steady_served_before_stop": 63
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 158,
+    "n_steady": 63,
+    "steady_served_before_stop": 63
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 158,
+    "n_steady": 64,
+    "steady_served_before_stop": 64
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 100.0,
+  "attack_ci95": [
+   100.0,
+   100.0
+  ],
+  "steady_mean": 100.0,
+  "steady_ci95": [
+   100.0,
+   100.0
+  ],
+  "collapse_steady": "0/10",
+  "collapse_steady_cp95": [
+   0.0,
+   0.31
+  ],
+  "baseline_not_clean": []
+ },
+ "nodef_live": {
+  "label": "no defense, live-run schedule",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 28.6,
+    "steady": 33.3,
+    "n_baseline": 58,
+    "n_attack": 14,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 23.1,
+    "steady": 33.3,
+    "n_baseline": 58,
+    "n_attack": 13,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 28.6,
+    "steady": 33.3,
+    "n_baseline": 58,
+    "n_attack": 14,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 28.6,
+    "steady": 33.3,
+    "n_baseline": 58,
+    "n_attack": 14,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 23.1,
+    "steady": 33.3,
+    "n_baseline": 58,
+    "n_attack": 13,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 28.6,
+    "steady": 33.3,
+    "n_baseline": 58,
+    "n_attack": 14,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 28.6,
+    "steady": 33.3,
+    "n_baseline": 45,
+    "n_attack": 14,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 23.1,
+    "steady": 33.3,
+    "n_baseline": 58,
+    "n_attack": 13,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 23.1,
+    "steady": 33.3,
+    "n_baseline": 58,
+    "n_attack": 13,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 23.1,
+    "steady": 33.3,
+    "n_baseline": 58,
+    "n_attack": 13,
+    "n_steady": 6,
+    "steady_served_before_stop": 0
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 25.8,
+  "attack_ci95": [
+   24.2,
+   27.5
+  ],
+  "steady_mean": 33.3,
+  "steady_ci95": [
+   33.3,
+   33.3
+  ],
+  "collapse_steady": "10/10",
+  "collapse_steady_cp95": [
+   0.69,
+   1.0
+  ],
+  "baseline_not_clean": []
+ },
+ "droponly_q_slowloris": {
+  "label": "drop-only (quarantine default), slowloris (orig r1-5 + re-run r6-10)",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 473,
+    "n_steady": 379,
+    "steady_served_before_stop": 379
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 475,
+    "n_steady": 381,
+    "steady_served_before_stop": 381
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 474,
+    "n_steady": 380,
+    "steady_served_before_stop": 380
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 475,
+    "n_steady": 380,
+    "steady_served_before_stop": 380
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 474,
+    "n_steady": 380,
+    "steady_served_before_stop": 380
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 382,
+    "steady_served_before_stop": 382
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 381,
+    "steady_served_before_stop": 381
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 382,
+    "steady_served_before_stop": 382
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 381,
+    "steady_served_before_stop": 381
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 382,
+    "steady_served_before_stop": 382
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 100.0,
+  "attack_ci95": [
+   100.0,
+   100.0
+  ],
+  "steady_mean": 100.0,
+  "steady_ci95": [
+   100.0,
+   100.0
+  ],
+  "collapse_steady": "0/10",
+  "collapse_steady_cp95": [
+   0.0,
+   0.31
+  ],
+  "baseline_not_clean": []
+ },
+ "droponly_q_slowpost": {
+  "label": "drop-only (quarantine default), slowpost (orig r1-5 + re-run r6-10)",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 474,
+    "n_steady": 380,
+    "steady_served_before_stop": 380
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 477,
+    "n_steady": 383,
+    "steady_served_before_stop": 383
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 474,
+    "n_steady": 380,
+    "steady_served_before_stop": 380
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 474,
+    "n_steady": 380,
+    "steady_served_before_stop": 380
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 472,
+    "n_steady": 378,
+    "steady_served_before_stop": 378
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 382,
+    "steady_served_before_stop": 382
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 382,
+    "steady_served_before_stop": 382
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 475,
+    "n_steady": 381,
+    "steady_served_before_stop": 381
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 382,
+    "steady_served_before_stop": 382
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 36,
+    "n_attack": 476,
+    "n_steady": 380,
+    "steady_served_before_stop": 380
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 100.0,
+  "attack_ci95": [
+   100.0,
+   100.0
+  ],
+  "steady_mean": 100.0,
+  "steady_ci95": [
+   100.0,
+   100.0
+  ],
+  "collapse_steady": "0/10",
+  "collapse_steady_cp95": [
+   0.0,
+   0.31
+  ],
+  "baseline_not_clean": []
+ },
+ "droponly_q_slowread": {
+  "label": "drop-only (quarantine default), slowread (orig r1-5 + re-run r6-10)",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 382,
+    "steady_served_before_stop": 382
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 475,
+    "n_steady": 380,
+    "steady_served_before_stop": 380
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 36,
+    "n_attack": 474,
+    "n_steady": 379,
+    "steady_served_before_stop": 379
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 474,
+    "n_steady": 380,
+    "steady_served_before_stop": 380
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 474,
+    "n_steady": 380,
+    "steady_served_before_stop": 380
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 381,
+    "steady_served_before_stop": 381
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 382,
+    "steady_served_before_stop": 382
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 381,
+    "steady_served_before_stop": 381
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 381,
+    "steady_served_before_stop": 381
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 100.0,
+    "steady": 100.0,
+    "n_baseline": 52,
+    "n_attack": 476,
+    "n_steady": 381,
+    "steady_served_before_stop": 381
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 100.0,
+  "attack_ci95": [
+   100.0,
+   100.0
+  ],
+  "steady_mean": 100.0,
+  "steady_ci95": [
+   100.0,
+   100.0
+  ],
+  "collapse_steady": "0/10",
+  "collapse_steady_cp95": [
+   0.0,
+   0.31
+  ],
+  "baseline_not_clean": []
+ },
+ "model_cH2_w16": {
+  "label": "provisioning test, SvH workers 16 (orig r1-3 + re-run r4-10)",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 6.7,
+  "attack_ci95": [
+   6.7,
+   6.7
+  ],
+  "steady_mean": 8.3,
+  "steady_ci95": [
+   8.3,
+   8.3
+  ],
+  "collapse_steady": "10/10",
+  "collapse_steady_cp95": [
+   0.69,
+   1.0
+  ],
+  "baseline_not_clean": []
+ },
+ "model_cH2_w32": {
+  "label": "provisioning test, SvH workers 32 (orig r1-3 + re-run r4-10)",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 9.7,
+    "steady": 8.3,
+    "n_baseline": 33,
+    "n_attack": 31,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 6.7,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 30,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 7.0,
+  "attack_ci95": [
+   6.7,
+   7.6
+  ],
+  "steady_mean": 8.3,
+  "steady_ci95": [
+   8.3,
+   8.3
+  ],
+  "collapse_steady": "10/10",
+  "collapse_steady_cp95": [
+   0.69,
+   1.0
+  ],
+  "baseline_not_clean": []
+ },
+ "model_cH2_w64": {
+  "label": "provisioning test, SvH workers 64 (orig r1-3 + re-run r4-10)",
+  "n": 10,
+  "expected": 10,
+  "empty_window_runs": [],
+  "runs": [
+   {
+    "run": "r1",
+    "baseline": 100.0,
+    "attack": 12.5,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 32,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r2",
+    "baseline": 100.0,
+    "attack": 15.2,
+    "steady": 8.3,
+    "n_baseline": 45,
+    "n_attack": 33,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r3",
+    "baseline": 100.0,
+    "attack": 15.2,
+    "steady": 8.3,
+    "n_baseline": 45,
+    "n_attack": 33,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r4",
+    "baseline": 100.0,
+    "attack": 12.5,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 32,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r5",
+    "baseline": 100.0,
+    "attack": 12.5,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 32,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r6",
+    "baseline": 100.0,
+    "attack": 12.5,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 32,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r7",
+    "baseline": 100.0,
+    "attack": 12.5,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 32,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r8",
+    "baseline": 100.0,
+    "attack": 12.5,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 32,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r9",
+    "baseline": 100.0,
+    "attack": 12.5,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 32,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   },
+   {
+    "run": "r10",
+    "baseline": 100.0,
+    "attack": 12.5,
+    "steady": 8.3,
+    "n_baseline": 46,
+    "n_attack": 32,
+    "n_steady": 24,
+    "steady_served_before_stop": 0
+   }
+  ],
+  "baseline_mean": 100.0,
+  "baseline_ci95": [
+   100.0,
+   100.0
+  ],
+  "attack_mean": 13.0,
+  "attack_ci95": [
+   12.5,
+   13.8
+  ],
+  "steady_mean": 8.3,
+  "steady_ci95": [
+   8.3,
+   8.3
+  ],
+  "collapse_steady": "10/10",
+  "collapse_steady_cp95": [
+   0.69,
+   1.0
+  ],
+  "baseline_not_clean": []
+ }
+}

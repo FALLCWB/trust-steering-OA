@@ -1,8 +1,8 @@
 # trust-steering-OA
 
-Reproducibility artifact (code only) for the paper *Resource-Aware Elastic Defense in SDN: Empirical Characterization of Score-Based Traffic Steering*.
+Reproducibility artifact (code and raw measurements) for the paper *Resource-Aware Elastic Defense in SDN: Empirical Characterization of Score-Based Traffic Steering*.
 
-A score-based traffic-steering DoS-defense policy for SDN, evaluated on a Mininet/Ryu/Open vSwitch testbed. This repository contains the testbed and experiment code only; it contains no manuscript text and no measurement data.
+A score-based traffic-steering DoS-defense policy for SDN, evaluated on a Mininet/Ryu/Open vSwitch testbed. This repository contains the testbed and experiment code, the figure scripts and the raw per-repetition measurements; it contains no manuscript text.
 
 ## Dependencies
 
@@ -32,4 +32,11 @@ The `*.sh` drivers in `harness/` run the full experiment batches used in the pap
 
 ## Raw measurement data
 
-`data/raw-measurements.tar.gz` contains the per-repetition measurements behind every reported figure and statistic: per-client HTTP latency logs (`latency_*.csv`), run manifests (`manifest.json`, phase timestamps), per-tier time series, the live-sensor score log (`sensor_live.log`), and the detector metric summaries. Extract with `tar xzf data/raw-measurements.tar.gz`; each experiment directory matches a `harness/` driver. Packet captures, the flow-feature dataset, and trained detector models are excluded for size and are available from the authors on request.
+| File | Experiments |
+|---|---|
+| `data/raw-measurements.tar.gz` | Original experiments (June and July 2026) |
+| `data/rev2-raw-measurements.tar.gz` | Revision-2 experiments (`REVISION2-ARTIFACTS.md`) |
+| `data/rerun-2026-11-fresh-topology.tar.gz` | November 2026 re-run with a fresh topology per repetition (`JISA-RERUN.md`) |
+| `data/r1r2-2026-11-live-baselines.tar.gz` | November 2026 live-detector baselines and reconnecting attacker (`JISA-RERUN.md`) |
+
+`data/raw-measurements.tar.gz` contains the per-repetition measurements of the original experiments: per-client HTTP latency logs (`latency_*.csv`), run manifests (`manifest.json`, phase timestamps), per-tier time series, the live-sensor score log (`sensor_live.log`), and the detector metric summaries. Extract with `tar xzf data/raw-measurements.tar.gz`; each experiment directory matches a `harness/` driver. Packet captures, the flow-feature dataset, and trained detector models are excluded for size and are available from the authors on request.

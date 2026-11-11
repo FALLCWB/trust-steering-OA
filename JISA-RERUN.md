@@ -10,5 +10,19 @@ The live-detector, hysteresis, default-tier ablation, drop-only top-up and provi
 | `data/sweeps-attack-window.json` | Detector-quality and legitimate-noise sweeps on the whole run, attack window and steady state (`scripts/jisa/sweep_windows.py`) |
 | `scripts/jisa/floor_scan.py` | Finds the floor of the issue-time availability metric in every series |
 | `scripts/jisa/gen_*.py` | Figure generators used for the JISA version (escape fix, attack-window Fig. 10, re-run Figs. 8, 9 and 17) |
+| `harness/rerun_r1r2.sh` | Driver of the live-detector baselines (`MODE=sanity|full`), same fresh-topology procedure |
+| `harness/config/droponly_q_hyst.json` | Drop-only with the quarantine default plus the 5 s promotion stabilization of `hyst_only.json` (the driver writes it if missing) |
+| `data/r1r2-2026-11-live-baselines.tar.gz` | Raw runs: `r1r2-full/hyst/{slowpost,slowread}`, `dq_live/<class>`, `dq_live_hyst/<class>`, `reconn_nohyst`, `reconn_hyst`, ten repetitions each, same files per run as above |
+| `data/r1r2-2026-11-analysis.json` | Every reported number of those runs, with first-promotion times (`scripts/jisa/analyze_r1r2.py`, which reuses the definitions of `analyze_rerun.py`) |
 
 Merged series: drop-only r1-r5 and provisioning r1-r3 come from `data/raw-measurements.tar.gz`; `analyze_rerun.py` refuses a merge when the run settings differ or run names overlap.
+
+## Live-detector baselines (Table 6 of the JISA version)
+
+Ten repetitions per cell on the live-run schedule (baseline 10 s, attack 30 s), each on a fresh topology with a fresh sensor:
+
+- steering with asymmetric hysteresis on Slow POST and Slow Read (Slowloris is `e2e_hyst` of the re-run);
+- drop-only with the quarantine default (`droponly_q.json`) without and with hysteresis (`droponly_q_hyst.json`) on Slowloris, Slow POST and Slow Read;
+- an attacker that keeps opening connections: Slowloris at the same 200 connections per second configured for 6,000 connections (`--intensity 6000`), so it opens connections for the whole attack, with steering without (`reconn_nohyst`) and with hysteresis (`reconn_hyst`).
+
+Reproduce the numbers: extract both tarballs, then `python3 scripts/jisa/analyze_r1r2.py r1r2-full full out.json`.
