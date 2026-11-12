@@ -99,7 +99,7 @@ else:
     ax[0].axvline(P_LEAK_LIVE, color="#d62728", lw=1.2)
     ax[0].text(P_LEAK_LIVE * 0.82, 50, "live detector", color="#a00", fontsize=7, rotation=90, va="center", ha="right")
 ax[0].set_xscale("log")
-ax[0].set_xlabel("detector miss probability $P_{\\mathrm{leak}}=\\Pr[m_A<\\tau_c]$")
+ax[0].set_xlabel("leaked share of attack load $P_{\\mathrm{leak}}$")
 ax[0].set_ylabel("legitimate availability (%)")
 ax[0].set_ylim(-3, 103)
 ax[0].legend(fontsize=8, loc="lower left", title="primary pool")
