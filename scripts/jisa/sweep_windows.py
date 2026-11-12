@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Detector-quality and legitimate-noise sweeps (Figs. 12 and 16) on the three windows: whole run (what the
-original generators used), whole attack window and steady state (Methods, Eq. 2). Mean over repetitions and
+original generators used), whole attack window and steady state (Methods, Eq. 4). Mean over repetitions and
 95 % percentile bootstrap (10^4 resamples, fixed seed).
 Usage: sweep_windows.py DATA_ROOT OUT_JSON
 """

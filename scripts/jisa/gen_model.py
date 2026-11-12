@@ -106,13 +106,13 @@ ax[0].legend(fontsize=8, loc="lower left", title="primary pool")
 ax[0].grid(alpha=0.3, which="both")
 
 # Panel B: provisioning test -- the model predicts availability rises with c_H, the
-# measurement stays at the floor of Eq. 2 (2 of 24 requests, each client's last one, answered after the attack
+# measurement stays at the floor of Eq. 4 (2 of 24 requests, each client's last one, answered after the attack
 # stops) and no request is answered during the attack at any pool size (re-run, n=10 per size).
 cH_test = [16, 32, 64]
 model_av = [100 * (1 - erlangB(a_L + a_A_sat, c)) for c in cH_test]
 meas_av = [8.3, 8.3, 8.3]
 ax[1].plot(cH_test, model_av, "o-", color="#1f77b4", ms=6, label="model")
-ax[1].plot(cH_test, meas_av, "s--", color="#d62728", ms=6, label="measured, Eq. 2 (floor)")
+ax[1].plot(cH_test, meas_av, "s--", color="#d62728", ms=6, label="measured, Eq. 4 (floor)")
 ax[1].plot(cH_test, [0, 0, 0], "v:", color="#7f0000", ms=6, label="measured, answered during attack")
 ax[1].set_xlabel("primary-tier worker pool $c_H$")
 ax[1].set_ylabel("no-defense availability (%)")

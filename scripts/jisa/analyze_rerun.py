@@ -5,10 +5,10 @@ Usage: analyze_rerun.py RR_ROOT ORIG_ROOT OUT_JSON
   RR_ROOT   .../rr2611/full  (re-run with a fresh topology per repetition)
   ORIG_ROOT .../data         (original data: droponly_q r1-r5 and model_cH2 r1-r3, both already fresh per rep)
 
-Windows (Methods, Eq. 2): baseline [0, attack_start); whole attack window [attack_start, attack_stop);
+Windows (Methods, Eq. 4): baseline [0, attack_start); whole attack window [attack_start, attack_stop);
 steady state [attack_start + 15 s, attack_stop). Availability = share of legitimate requests answered 200,
 by issue time. A repetition "collapses" when none of the legitimate requests issued in its steady-state window
-is answered before the attack stops (under complete denial Eq. 2 still counts each client's last request,
+is answered before the attack stops (under complete denial Eq. 4 still counts each client's last request,
 answered once the attack ends, so the steady value sits at a floor of 2/n instead of 0).
 Intervals: 95 % percentile bootstrap over repetitions (10^4 resamples, fixed seed) for means; Clopper-Pearson
 for collapse counts. Sensor windows: a window belongs to a run when it is posted inside the attack phase or

@@ -19,7 +19,7 @@ OUT = sys.argv[2] if len(sys.argv) > 2 else "/opt/trust-lab/data/detector_sweep/
 
 
 def cell_avail(cell):
-    """Whole attack window (Methods, Eq. 2 with Delta = 0): requests issued in [t_a, t_e)."""
+    """Whole attack window (Methods, Eq. 4 with Delta = 0): requests issued in [t_a, t_e)."""
     m = json.load(open(os.path.join(cell, "manifest.json")))
     t0, a0, a1 = m["t0"], m["phases"]["attack_start"], m["phases"]["attack_stop"]
     codes = ok = 0

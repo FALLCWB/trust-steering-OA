@@ -2,9 +2,9 @@
 """Fig. 9 (re-run data): live in-domain detector across attack classes, with the no-defense reference and
 the live Slowloris run with asymmetric hysteresis, all on the same 30 s live-run schedule and 3-client topology.
 
-Bars: steady-state legitimate availability (Eq. 2, Delta = 15 s), mean over ten repetitions, read from
+Bars: steady-state legitimate availability (Eq. 4, Delta = 15 s), mean over ten repetitions, read from
 analysis.json (analyze_rerun.py). Each bar carries its collapse count (repetitions in which no steady-state
-request is answered before the attack stops). The dashed line is the floor of Eq. 2 on this schedule: under
+request is answered before the attack stops). The dashed line is the floor of Eq. 4 on this schedule: under
 complete denial each client's last request is answered after the attack stops, 2 of 6 requests.
 Usage: gen_f17_rr.py ANALYSIS_JSON OUT.pdf
 """
@@ -32,7 +32,7 @@ for xi, (lbl, key, col) in zip(x, bars):
     ax.text(xi, mu + 2.5, "%.0f%%" % mu, ha="center", fontsize=7)
     ax.text(xi, mu + 8.5, "%d/%d coll." % (k, n), ha="center", fontsize=6.5, color="#a00")
 ax.axhline(100 * 2 / 6, ls="--", color="#555", lw=0.9)
-ax.text(-0.42, 53, "dashed: floor of Eq. 2\n(no request answered\nduring the attack)", ha="left", va="bottom", fontsize=6.3, color="#333")
+ax.text(-0.42, 53, "dashed: floor of Eq. 4\n(no request answered\nduring the attack)", ha="left", va="bottom", fontsize=6.3, color="#333")
 ax.set_ylabel("steady-state legitimate\navailability (%)")
 ax.set_ylim(0, 116)
 ax.set_xticks(x); ax.set_xticklabels([b[0] for b in bars], fontsize=7.5)

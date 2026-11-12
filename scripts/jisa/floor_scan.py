@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Scan every run series for the issue-time floor of Eq. 2.
+"""Scan every run series for the issue-time floor of Eq. 4.
 
 For each series (a folder whose r* subfolders hold manifest.json and latency_*.csv) prints the steady-state
-availability by Eq. 2 (issue time in [t_a+15 s, t_e), answered 200) next to the share answered 200 *before the
-attack stops* (t_i + time_total < t_e). Where they differ, part of the Eq. 2 value is requests issued during
+availability by Eq. 4 (issue time in [t_a+15 s, t_e), answered 200) next to the share answered 200 *before the
+attack stops* (t_i + time_total < t_e). Where they differ, part of the Eq. 4 value is requests issued during
 the attack and answered only after it stopped.
 Usage: floor_scan.py ROOT [ROOT...]
 """
