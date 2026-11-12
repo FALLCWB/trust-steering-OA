@@ -8,9 +8,9 @@ across tiers; legitimate availability follows from the blocking at the tier each
 client lands on.
 
 Central relation: a legitimate client is served on the primary tier SvH, which also receives
-the share of attacker load that the detector misclassifies below tau_c. With P_leak the
-probability that an attacker source scores below tau_c (a function of detector separation) and
-a_A the attacker offered load, the legitimate availability is
+the share of attacker load placed on it. With P_leak that share (equal to the probability that the
+attacker scores below tau_c only when its load follows its per-window score) and a_A the attacker
+offered load, the legitimate availability is
 
     A_legit = 1 - ErlangB(a_L + P_leak * a_A, c_H),
 
@@ -35,8 +35,10 @@ def erlangB(a, c):
 C_H, C_C, C_L = 32, 12, 4
 # Offered loads (Erlangs). Legit: 2 clients, ~3.3 req/s each, 5 ms service.
 a_L = (2 / 0.305) * 0.005
-# Attacker offered load is calibrated from ONE measured operating point: the steady-state
-# no-defense availability under sustained Slowloris (the full attacker load on the primary).
+# Attacker offered load: an illustrative parameter set so that the model reproduces ONE measured value,
+# the steady-state no-defense availability under sustained Slowloris (the full attacker load on the
+# primary). That value is the issue-time floor of the availability metric, so it does not identify the
+# load (paper, Section 6); the parameter only fixes the scale of the illustration.
 MEAS_NODEF = 0.083  # measured steady-state legit availability, no defense (Slowloris, n=5)
 def _calib(c, target_avail):
     lo, hi = 1.0, 1e5
@@ -91,13 +93,13 @@ for c, style in [(16, "--"), (32, "-"), (64, ":")]:
     ax[0].plot(P, y, style, lw=1.8, label="$c_H=%d$" % c)
 ax[0].axhline(99, ls="--", color="#888", lw=0.8)
 ax[0].text(1.1e-4, 94, "99% target", fontsize=7, color="#555")
-P_LEAK_LIVE = float(os.environ["P_LEAK"]) if os.environ.get("P_LEAK") else None   # measured live miss rate (re-run)
+P_LEAK_LIVE = float(os.environ["P_LEAK"]) if os.environ.get("P_LEAK") else None   # live per-window miss rate (re-run), drawn for reference; not the leaked share
 if P_LEAK_LIVE is None:
     ax[0].axvspan(0.3, 1.0, color="#d62728", alpha=0.07)
-    ax[0].text(0.33, 50, "live detector", color="#a00", fontsize=7, rotation=90, va="center")
+    ax[0].text(0.33, 72, "live miss rate (per window)", color="#a00", fontsize=7, rotation=90, va="center")
 else:
     ax[0].axvline(P_LEAK_LIVE, color="#d62728", lw=1.2)
-    ax[0].text(P_LEAK_LIVE * 0.82, 50, "live detector", color="#a00", fontsize=7, rotation=90, va="center", ha="right")
+    ax[0].text(P_LEAK_LIVE * 0.82, 72, "live miss rate (per window)", color="#a00", fontsize=7, rotation=90, va="center", ha="right")
 ax[0].set_xscale("log")
 ax[0].set_xlabel("leaked share of attack load $P_{\\mathrm{leak}}$")
 ax[0].set_ylabel("legitimate availability (%)")

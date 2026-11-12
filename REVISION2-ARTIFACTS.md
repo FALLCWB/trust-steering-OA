@@ -23,3 +23,7 @@ testbed; each restarts the topology per repetition and uses the shared metric de
 ## Data
 - `data/rev2_stats.json` — aggregated statistics behind every new number.
 - `data/rev2-raw-measurements.tar.gz` — per-repetition raw outputs for all new cells.
+
+### Reading `rev2_stats.json` against the JISA version
+- `collapse` counts repetitions whose steady-state availability is at or below 1 % (`collapse_rate` in `scripts/rev2_analyze.py`). The paper counts a repetition as collapsed when no legitimate request issued in the steady state is answered before the attack stops; a value at the issue-time floor of the availability metric (16.7 % in `scale_threat`) meets that definition but not the 1 % threshold. So `scale_threat.nodefense` levels 1 and 2 read `collapse.k = 0` at 16.7 % while the paper counts ten collapses of ten.
+- In `spoof_mac`, `hijacked.k` counts the repetitions in which the forged binding was **not** accepted (the helper counts values at or below zero); the number of repetitions in which it was accepted is `hijacked_count` (0 with the pin on, 10 with it off), which is what the paper reports.

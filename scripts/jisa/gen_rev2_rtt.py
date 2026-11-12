@@ -4,7 +4,7 @@ Figure: external validity under injected propagation delay (Reviewer 2.1).
 
 Left: steady legitimate availability vs injected RTT under Slowloris, no-defense vs steering.
       The protection is RTT-invariant (steering flat near 100 %, no-defense flat near 0),
-      which is the qualitative finding that transfers.
+      the qualitative finding, which holds at every injected delay.
 Right: legitimate median latency of served requests vs RTT under steering, showing the
       absolute latency rises by roughly the added propagation delay, which is the
       testbed-specific quantity that does not transfer unchanged.

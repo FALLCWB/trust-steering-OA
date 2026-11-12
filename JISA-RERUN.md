@@ -15,6 +15,8 @@ The live-detector, hysteresis, default-tier ablation, drop-only top-up and provi
 | `data/r1r2-2026-11-live-baselines.tar.gz` | Raw runs: `r1r2-full/hyst/{slowpost,slowread}`, `dq_live/<class>`, `dq_live_hyst/<class>`, `reconn_nohyst`, `reconn_hyst`, ten repetitions each, same files per run as above |
 | `data/r1r2-2026-11-analysis.json` | Every reported number of those runs, with first-promotion times (`scripts/jisa/analyze_r1r2.py`, which reuses the definitions of `analyze_rerun.py`) |
 
+The field `p_leak` in both analysis files is the per-window miss rate of the live sensor (the share of scoring windows below tau_c), not the leaked share of attack load P_leak of the analytical model; the paper keeps the two apart (Section 6).
+
 Merged series: drop-only r1-r5 and provisioning r1-r3 come from `data/raw-measurements.tar.gz`; `analyze_rerun.py` refuses a merge when the run settings differ or run names overlap.
 
 ## Live-detector baselines (Table 6 of the JISA version)

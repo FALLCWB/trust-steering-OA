@@ -26,9 +26,9 @@ OUT = sys.argv[2] if len(sys.argv) > 2 else "figs/f_sensor.pdf"
 R = json.load(open(STATS))["sensor_failure"]
 
 order = [("baseline_live", "sensor\nlive"),
-         ("outage_nottl", "outage\n(fail-open)"),
+         ("outage_nottl", "outage\n(no TTL)"),
          ("outage_ttl", "outage\n+ TTL"),
-         ("stale_nottl", "stale benign\n(fail-open)"),
+         ("stale_nottl", "stale benign\n(no TTL)"),
          ("stale_ttl", "stale benign\n+ TTL"),
          ("poisoned", "poisoned\nsensor")]
 names = [n for _, n in order if _ in R]
