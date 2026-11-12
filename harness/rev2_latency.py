@@ -19,7 +19,7 @@ Three sub-experiments:
       External validity of the absolute latency numbers under injected wide-area propagation
       delay. The client links carry a one-way netem delay swept over 0, 5, 25, 50 ms (RTT 0,
       10, 50, 100 ms). Measures legitimate availability and latency under Slowloris with and
-      without steering, to show which conclusions are RTT-invariant (the availability
+      without steering, to show which conclusions hold at every injected RTT (the availability
       protection) and how the absolute latency shifts with propagation (the testbed-specific
       part).
 

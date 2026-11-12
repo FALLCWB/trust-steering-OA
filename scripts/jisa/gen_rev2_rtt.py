@@ -3,11 +3,11 @@
 Figure: external validity under injected propagation delay (Reviewer 2.1).
 
 Left: steady legitimate availability vs injected RTT under Slowloris, no-defense vs steering.
-      The protection is RTT-invariant (steering flat near 100 %, no-defense flat near 0),
-      the qualitative finding, which holds at every injected delay.
+      The protection holds at every injected delay (steering flat near 100 %, no-defense flat
+      near 0), the qualitative finding; it does not establish invariance in a physical WAN.
 Right: legitimate median latency of served requests vs RTT under steering, showing the
-      absolute latency rises by roughly the added propagation delay, which is the
-      testbed-specific quantity that does not transfer unchanged.
+      absolute latency rises with the round-trip time at roughly four round trips per fetch,
+      the testbed-specific quantity that does not transfer unchanged.
 
 Reads rev2_stats.json (from scripts/rev2_analyze.py).
 
@@ -46,7 +46,7 @@ axL.set_ylabel("legitimate availability (%)")
 axL.set_ylim(-3, 108)
 axL.grid(alpha=0.3)
 axL.legend(fontsize=7.5, loc="center left")
-axL.set_title("(a) protection is RTT-invariant", fontsize=8.5)
+axL.set_title("(a) protection holds at each injected RTT", fontsize=8.5)
 
 if "gradual" in R:
     xs, ys, es = series("gradual", "median_lat")

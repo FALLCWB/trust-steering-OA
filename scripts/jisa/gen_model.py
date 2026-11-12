@@ -17,7 +17,7 @@ offered load, the legitimate availability is
 tying detector quality (P_leak) and provisioning (c_H) to availability in one expression.
 Run with the sensor-venv python (numpy/matplotlib).
 """
-import os, sys
+import sys
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -58,7 +58,7 @@ def avail(load, c):
     return 100 * (1 - erlangB(load, c))
 
 print("=== model vs measured (steady-state) ===")
-print("no-defense  (legit+full attacker on SvH): model %.1f%%   measured ~0%%"
+print("no-defense  (legit+full attacker on SvH): model %.1f%%   measured 8.3%% (floor of Eq. 4)"
       % avail(a_L + a_A_sat, C_H))
 print("steering    (attacker isolated; legit alone on SvH): model %.1f%%   measured 100%%"
       % avail(a_L, C_H))
@@ -93,13 +93,8 @@ for c, style in [(16, "--"), (32, "-"), (64, ":")]:
     ax[0].plot(P, y, style, lw=1.8, label="$c_H=%d$" % c)
 ax[0].axhline(99, ls="--", color="#888", lw=0.8)
 ax[0].text(1.1e-4, 94, "99% target", fontsize=7, color="#555")
-P_LEAK_LIVE = float(os.environ["P_LEAK"]) if os.environ.get("P_LEAK") else None   # live per-window miss rate (re-run), drawn for reference; not the leaked share
-if P_LEAK_LIVE is None:
-    ax[0].axvspan(0.3, 1.0, color="#d62728", alpha=0.07)
-    ax[0].text(0.33, 72, "live miss rate (per window)", color="#a00", fontsize=7, rotation=90, va="center")
-else:
-    ax[0].axvline(P_LEAK_LIVE, color="#d62728", lw=1.2)
-    ax[0].text(P_LEAK_LIVE * 0.82, 72, "live miss rate (per window)", color="#a00", fontsize=7, rotation=90, va="center", ha="right")
+# The live detector's per-window miss rate is not drawn: it is not the leaked share of attack load (paper,
+# Section 6), so it does not belong on this axis.
 ax[0].set_xscale("log")
 ax[0].set_xlabel("leaked share of attack load $P_{\\mathrm{leak}}$")
 ax[0].set_ylabel("legitimate availability (%)")
